@@ -5,9 +5,9 @@ int funcao_avaliacao(int **mat, int vertices, int *solucao, int tamanho_solucao)
     {
         for (int j = 1; j < tamanho_solucao; j++)
         {
-            if (i == j)
+            if (i == j || solucao[i] != solucao[j])
                 continue;
-            if (solucao[i] == solucao[j] && mat[i][j] == 1)
+            if (mat[i][j] == 1)
             {
                 // Vértices adjacentes com mesma cor => solução inválida
                 solucao[0] = -1; // Define a flag de erro na solução
