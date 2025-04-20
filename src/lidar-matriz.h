@@ -42,11 +42,16 @@ void imprimir_matriz(int **mat, int vertices)
     }
 }
 
-void liberar_memoria_matriz(int **mat, int vertices)
+void liberar_memoria_matriz(int **mat, int linhas)
 {
-    for (int i = 0; i < vertices; i++)
+    for (int i = 0; i < linhas; i++)
     {
         free(mat[i]);
     }
     free(mat);
+}
+
+void liberar_memoria_vetor(int *vetor)
+{
+    free(vetor);
 }
