@@ -28,14 +28,15 @@ void cruzamento(int *solucao1, int *solucao2, int *novaSolucao, int vertices)
 
 void mutacao(int *solucao, int vertices)
 {
-    int i, pontoMutacao;
+    int i, pontoMutacao, cor;
     pontoMutacao = 1 + (rand() % vertices);
 
-    // Inverte o valor do ponto de mutação
-    if (solucao[pontoMutacao] == 0)
-        solucao[pontoMutacao] = 1;
-    else
-        solucao[pontoMutacao] = 0;
+    cor = rand() % vertices;
+
+    if (solucao[pontoMutacao] != cor)
+    {
+        solucao[pontoMutacao] = cor;
+    }
 }
 
 void elitismo(int **populacao, int tamanhoPopulacao, int *melhorSolucao)
