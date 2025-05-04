@@ -9,12 +9,12 @@ int geracao(int **mat, int ***populacao, int vertices, int tamanhoPopulacao, int
 
     for (i = 0; i < tamanhoPopulacao; i++)
     {
-        int numCores = funcao_avaliacao(mat, vertices, (*populacao)[i], vertices);
-        if (numCores == -1)
-        {
-            printf("Solução inválida encontrada. Ignorando...\n");
-            continue;
-        }
+        int numCores = funcao_avaliacao(mat, vertices, &(*populacao)[i]);
+        // if (numCores == -1)
+        // {
+        //     printf("Solução inválida encontrada. Ignorando...\n");
+        //     continue;
+        // }
     }
 
     elitismo(*populacao, tamanhoPopulacao, melhorSolucao, vertices);
@@ -27,7 +27,8 @@ int geracao(int **mat, int ***populacao, int vertices, int tamanhoPopulacao, int
     }
     for (i = 0; i < tamanhoPopulacao; i++)
     {
-        cruzamento(&(*populacao)[i], &(*populacao)[++i], vertices);
+        int temp = i;
+        cruzamento(&(*populacao)[temp], &(*populacao)[++i], vertices);
     }
 
     return menorNumCores;

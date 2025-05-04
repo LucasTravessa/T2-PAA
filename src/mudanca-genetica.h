@@ -48,5 +48,11 @@ void elitismo(int **populacao, int tamanhoPopulacao, int **melhorSolucao, int ve
             indiceMelhor = i;
         }
     }
-    *melhorSolucao = populacao[indiceMelhor];
+    if (menorCores != -1 && menorCores < (*melhorSolucao)[0])
+    {
+        for (int j = 0; j <= vertices; j++)
+        {
+            (*melhorSolucao)[j] = populacao[indiceMelhor][j];
+        }
+    }
 }

@@ -18,6 +18,7 @@ int main()
     }
 
     int *melhor_solucao = malloc((vertices + 1) * sizeof(int));
+    melhor_solucao[0] = vertices; // Inicializa com o número máximo de cores
     int menor_num_cores = vertices;
 
     printf("\nMatriz de adjacencia, %d vertices:\n", vertices);
@@ -32,16 +33,10 @@ int main()
         printf("\nGeracao %d\n", i + 1);
         menor_num_cores = geracao(mat_adjacencia, &solucoes, vertices, TAMANHO_POPULACAO, &melhor_solucao);
         printf("\nMenor numero de cores: %d\n", menor_num_cores);
-        printf("\nMelhor solução encontrada:\n");
-        for (int j = 0; j < vertices + 1; j++)
-        {
-            printf("%d ", melhor_solucao[j]);
-        }
-        printf("\n");
     }
 
-    printf("\n Menor numero de cores FINAL: %d", menor_num_cores);
-    printf("\n Melhor solução encontrada FINAL:\n");
+    printf("\nMenor numero de cores FINAL: %d", menor_num_cores);
+    printf("\nMelhor solução encontrada FINAL:\n");
     for (int i = 0; i < vertices + 1; i++)
     {
         printf("%d ", melhor_solucao[i]);
