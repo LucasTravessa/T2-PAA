@@ -1,8 +1,8 @@
 #include <math.h>
 
-void cruzamento(int *solucao1, int *solucao2, int *novaSolucao, int vertices)
+void cruzamento(int **solucao1, int **solucao2, int vertices)
 {
-    int i, pontoCorte1, pontoCorte2;
+    int pontoCorte1, pontoCorte2;
     pontoCorte1 = 1 + (rand() % vertices);
     pontoCorte2 = 1 + (rand() % vertices);
 
@@ -13,41 +13,40 @@ void cruzamento(int *solucao1, int *solucao2, int *novaSolucao, int vertices)
         pontoCorte2 = aux;
     }
 
-    for (i = 1; i < vertices; i++)
+    for (int i = 1; i < vertices + 1; i++)
     {
-        if (i < pontoCorte1 || i > pontoCorte2)
+        if (i >= pontoCorte1 && i <= pontoCorte2)
         {
-            novaSolucao[i] = solucao1[i];
-        }
-        else
-        {
-            novaSolucao[i] = solucao2[i];
+            int temp = (*solucao1)[i];
+            (*solucao1)[i] = (*solucao2)[i];
+            (*solucao2)[i] = temp;
         }
     }
 }
 
-void mutacao(int *solucao, int vertices)
+void mutacao(int **solucao, int vertices)
 {
-    int i, pontoMutacao, cor;
+    int pontoMutacao, cor;
     pontoMutacao = 1 + (rand() % vertices);
 
     cor = rand() % vertices;
 
-    if (solucao[pontoMutacao] != cor)
+    if ((*solucao)[pontoMutacao] != cor)
     {
-        solucao[pontoMutacao] = cor;
+        (*solucao)[pontoMutacao] = cor;
     }
 }
 
-void elitismo(int **populacao, int tamanhoPopulacao, int *melhorSolucao)
+void elitismo(int **populacao, int tamanhoPopulacao, int **melhorSolucao, int vertices)
 {
-    int i, indiceMelhor = 0;
-    for (i = 1; i < tamanhoPopulacao; i++)
+    int indiceMelhor = 0, menorCores = vertices;
+    for (int i = 0; i < tamanhoPopulacao; i++)
     {
-        if (populacao[i][0] < populacao[indiceMelhor][0])
+        if (populacao[i][0] < menorCores && populacao[i][0] != -1)
         {
+            menorCores = populacao[i][0];
             indiceMelhor = i;
         }
     }
-    melhorSolucao = populacao[indiceMelhor];
+    *melhorSolucao = populacao[indiceMelhor];
 }
