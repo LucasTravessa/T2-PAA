@@ -11,6 +11,10 @@ CFLAGS = -Wall -Wextra -g
 all: $(BIN)
 	./$(BIN)
 
+# Build target
+build: $(BIN)
+	@echo "Build complete. Run './bin/main' to execute."
+
 # Compile the C code
 $(BIN): $(SRC)
 	mkdir -p bin
