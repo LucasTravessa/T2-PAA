@@ -1,4 +1,4 @@
-int funcao_avaliacao(int **mat, int vertices, int **solucao)
+void funcao_avaliacao(int **mat, int vertices, int **solucao)
 {
     for (int i = 0; i < vertices; i++)
     {
@@ -10,7 +10,7 @@ int funcao_avaliacao(int **mat, int vertices, int **solucao)
             {
                 // Vértices adjacentes com mesma cor => solução inválida
                 (*solucao)[0] = -1; // Define a flag de erro na solução
-                return -1;
+                return;
             }
         }
     }
@@ -30,6 +30,5 @@ int funcao_avaliacao(int **mat, int vertices, int **solucao)
     }
 
     (*solucao)[0] = numero_cores; // Armazena o número de cores na primeira posição da solução
-
-    return numero_cores;
+    return;
 }
