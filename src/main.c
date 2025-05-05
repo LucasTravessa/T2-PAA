@@ -3,7 +3,7 @@
 #include "./gerar-solucoes.h"
 #include "./geracao.h"
 
-#define GERACOES 100
+#define GERACOES 10000
 #define TAMANHO_POPULACAO 10
 
 int main()
@@ -37,10 +37,10 @@ int main()
 
     printf("\nMenor numero de cores FINAL: %d", menor_num_cores);
     printf("\nMelhor solução encontrada FINAL:\n");
-    for (int i = 0; i < vertices + 1; i++)
+    for (int i = 1; i < vertices + 1; i++)
     {
-        printf("%d ", melhor_solucao[i]);
+        printf("%d, ", melhor_solucao[i]);
     }
-    printf("\n\n");
+    printf("\n");
     return 0;
 }
